@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  phoenix:
+    build: 
+      context: .
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    env_file:
+      - .env
+    command: ./run.sh
+
+  db:
+    image: postgres:13
+    env_file:
+      - .env
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  pgdata:

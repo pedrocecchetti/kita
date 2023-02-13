@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "Kita", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body class="font-mono">
+    <header class="mx-auto px-auto">
+      <section class="bg-gray-100 mx-0 px-0">
+        
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl px-4 md:px-6 py-2.5">
+      <a href="https://flowbite.com" class="flex items-center">
+          <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+          <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">KITA</span>
+      </a>
+      <div class="flex items-center">
+          <a href="tel:5541251234" class="mr-6 text-sm font-medium text-gray-500 dark:text-white hover:underline">(163) 2228814</a>
+          <a href="#" class="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline" href="{}">Login</a>
+      </div>
+  </div>
+</nav>
+<nav class="bg-gray-50 dark:bg-gray-700">
+  <div class="max-w-screen-xl px-4 py-3 mx-auto md:px-6">
+      <div class="flex items-center">
+          <ul class="flex flex-row mt-0 mr-6 space-x-8 text-sm font-medium">
+              <li>
+                  <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+              </li>
+              <li>
+                  <a href="#" class="text-gray-900 dark:text-white hover:underline">Company</a>
+              </li>
+              <li>
+                  <a href="#" class="text-gray-900 dark:text-white hover:underline">Team</a>
+              </li>
+              <li>
+                  <a href="#" class="text-gray-900 dark:text-white hover:underline">Features</a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+      </section>
+    </header>
+    <%= @inner_content %>
+  </body>
+</html>
