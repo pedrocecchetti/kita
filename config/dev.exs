@@ -4,7 +4,7 @@ import Config
 config :kita, Kita.Repo,
   username: System.get_env("PGUSER", "postgres"),
   password: System.get_env("POSTGRES_PASSWORD", "postgres"),
-  hostname: System.get_env("PGHOST", "db"),
+  hostname: System.get_env("PGHOST", "localhost"),
   database: System.get_env("PGDATABASE", "kita_dev"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
@@ -28,7 +28,6 @@ config :kita, KitaWeb.Endpoint,
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
-
   ]
 
 # ## SSL Support

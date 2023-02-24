@@ -1,0 +1,16 @@
+<.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
+
+  <div class="basis-1/2 items-center border mt-12 border-violet-400 mx-80 h-auto">
+    <%= email_input f, :email, required: true, placeholder: "Email" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+  
+  
+  <div>
+    <%= submit "Send instructions to reset password", class: "block bg-blue-400 mx-auto w-48 h-auto mb-12 rounded-md" %>
+  </div>
+</div>
+</.form>
+
+<p class="mx-auto text-center">
+  <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "w-12 mx-0 hover:bg-teal-400" %> |
+  <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "mx-auto hover:bg-teal-400" %>
+</p>

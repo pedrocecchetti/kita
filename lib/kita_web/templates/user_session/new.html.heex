@@ -1,0 +1,32 @@
+<.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user} class="block">
+  <%= if @error_message do %>
+    <div class="alert alert-danger">
+      <p><%= @error_message %></p>
+    </div>
+  <% end %>
+  
+
+    <div class="basis-1/2 items-center border mt-12 border-violet-400 mx-80">
+      <%= email_input f, :email, required: true, placeholder: "Email" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+      <%= error_tag f, :email %>
+      <%= password_input f, :password, required: true, placeholder: "Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+      <%= error_tag f, :password %>
+      <div class="flex mx-2 px-0">
+        <%= label f, :remember_me, class: "mx-auto mr-0 mb-2"%>
+        <%= checkbox f, :remember_me, class: "mx-auto ml-2"  %>
+      </div>
+      
+      <div> 
+        <%= submit "Log in" , class: "block bg-blue-400 mx-auto w-20 h-10 mb-12 rounded-md"%>
+      </div>
+    </div>    
+
+
+
+  
+</.form>
+
+<p class="mx-auto text-center">
+  <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "w-12 mx-0 hover:bg-teal-400" %> |
+  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) , class: "mx-auto hover:bg-yellow-400"%>
+</p>
