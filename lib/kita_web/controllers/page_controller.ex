@@ -1,7 +1,9 @@
 defmodule KitaWeb.PageController do
   use KitaWeb, :controller
 
-  def index(conn, _params) do
-    render(conn, "index.html")
+  @pages [:index, :company, :team]
+
+  for i <- @pages do
+    def unquote(i)(conn, _param), do: render(conn, "#{unquote(i)}.html")
   end
 end

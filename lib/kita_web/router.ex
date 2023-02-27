@@ -21,6 +21,8 @@ defmodule KitaWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/company", PageController, :company
+    get "/team", PageController, :team
   end
 
   # Other scopes may use custom stacks.
