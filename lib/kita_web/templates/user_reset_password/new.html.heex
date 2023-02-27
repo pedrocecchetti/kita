@@ -1,6 +1,6 @@
 <.form let={f} for={:user} action={Routes.user_reset_password_path(@conn, :create)}>
 
-  <div class="basis-1/2 items-center border mt-12 border-violet-400 mx-80 h-auto">
+  <div class="basis-1/2 items-center border mt-12 border-violet-400 mx-auto h-auto max-w-lg">
     <%= email_input f, :email, required: true, placeholder: "Email" , class: "block mx-auto rounded-md my-4 w-10/12" %>
   
   
