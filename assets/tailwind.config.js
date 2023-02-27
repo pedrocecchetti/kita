@@ -10,7 +10,14 @@ module.exports = {
     '../lib/*_web/**/*.*ex'
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "playground": "url('../images/kita-miniforscher-09.jpeg')"
+      },
+      fontFamily: {
+        "tilt-neon": ['"Tilt Neon"']
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
