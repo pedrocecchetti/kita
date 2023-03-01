@@ -5,9 +5,11 @@ defmodule KitaWeb.UserRegistrationController do
   alias Kita.Accounts.User
   alias KitaWeb.UserAuth
 
+  @profile_options [:kita, :person]
+
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, options: @profile_options)
   end
 
   def create(conn, %{"user" => user_params}) do
@@ -24,7 +26,7 @@ defmodule KitaWeb.UserRegistrationController do
         |> UserAuth.log_in_user(user)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, options: @profile_options)
     end
   end
 end

@@ -13,6 +13,22 @@
   <%= password_input f, :password, required: true , placeholder: "Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
   <p class="text-center mx-0"><%= error_tag f, :password %></p>
 
+  <%= inputs_for f, :profile, fn f -> %>
+    <div class="mb-4">
+      <%= text_input f, :first_name, required: true, placeholder: "First Name", class: "block mx-auto rounded-md my-4 w-10/12" %>
+      <%= error_tag f, :first_name %>
+    </div>
+    <div class="mb-4">
+      <%= text_input f, :last_name, required: true, placeholder: "Last Name", class: "block mx-auto rounded-md my-4 w-10/12" %>
+      <%= error_tag f, :last_name %>
+
+      <div class="block mx-auto rounded-md my-4 w-10/12">
+        <%= select f, :profile_type, options: @options%>
+        <%= error_tag f, :profile_type %>
+      </div>
+      
+    </div>
+    <% end %>
   <div>
     <%= submit "Register" , class: "block bg-blue-400 mx-auto w-20 h-10 mb-12 rounded-md"%>
   </div>
