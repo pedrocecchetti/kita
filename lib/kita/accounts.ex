@@ -4,9 +4,10 @@ defmodule Kita.Accounts do
   """
 
   import Ecto.Query, warn: false
+  alias Kita.Accounts.Profile
   alias Kita.Repo
 
-  alias Kita.Accounts.{User, UserToken, UserNotifier}
+  alias Kita.Accounts.{User, UserToken, UserNotifier, Profile}
 
   ## Database getters
 
@@ -59,6 +60,8 @@ defmodule Kita.Accounts do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  def get_user_by_profile_id(id), do: Repo.get_by(User, profile_id: id)
 
   ## User registration
 
@@ -349,5 +352,19 @@ defmodule Kita.Accounts do
       {:ok, %{user: user}} -> {:ok, user}
       {:error, :user, changeset, _} -> {:error, changeset}
     end
+  end
+
+  def change_user_profile(profile, attrs \\ %{}) do
+    Profile.changeset(profile, attrs)
+  end
+
+  def get_profile_by_id(id), do: Repo.get(Profile, id)
+
+  def update_user_profile(user, params) do
+    complete_user = Repo.preload(user, :profile)
+    complete_user.profile
+
+    |> Profile.update_names_changeset(params)
+    |> Repo.update()
   end
 end

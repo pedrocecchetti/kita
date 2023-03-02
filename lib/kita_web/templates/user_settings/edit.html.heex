@@ -1,4 +1,4 @@
-<h1 class="text-center text-4xl">Settings</h1>
+<h1 class="text-center text-4xl pt-12">Settings</h1>
 
 
 <div class="flex">
@@ -9,7 +9,7 @@
       </div>
     <% end %>
     
-    <div class="basis-1/2 items-center mt-12 mx-auto max-w-xl ">
+    <div class="basis-1/2 items-center mt-12 mx-auto max-w-xl pt-5  bg-slate-100  rounded-lg shadow-xl pb-5 ">
       <h3 class="text-center text-2xl">Change email</h3>
       <%= hidden_input f, :action, name: "action", value: "update_email" %>
   
@@ -32,19 +32,19 @@
       </div>
       <% end %>
       
-      <div class="basis-1/2 items-center  mt-12  mx-auto max-w-xl">
+      <div class="basis-1/2 items-center  mt-12  mx-auto rounded-lg max-w-xl pt-5 bg-slate-100 shadow-xl pb-5">
         <h3 class="text-center text-2xl">Change password</h3>
     <%= hidden_input f, :action, name: "action", value: "update_password" %>
   
     
-    <%= password_input f, :password_confirmation, required: true, name: "password_confirmation", id: "password_confirmation" , placeholder: "Password Confirmation" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+    <%= password_input f, :password, required: true, placeholder: "New Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+    <%= error_tag f, :password %>
+  
+  
+    <%= password_input f, :password_confirmation, required: true, placeholder: "Password Confirmation" , class: "block mx-auto rounded-md my-4 w-10/12" %>
     <%= error_tag f, :password_confirmation %>
   
-  
-    <%= password_input f, :password_confirmation, required: true, name: "password_confirmation", id: "password_confirmation" , placeholder: "Password Confirmation" , class: "block mx-auto rounded-md my-4 w-10/12" %>
-    <%= error_tag f, :password_confirmation %>
-  
-    <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" , placeholder: " Current Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+    <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" , placeholder: " Current Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
       <p class="text-center mx-0"><%= error_tag f, :password %></p>
       <%= submit "Change password",  class: "block bg-blue-400 mx-auto w-40 h-10 mb-12 rounded-md hover:bg-teal-500" %>
     </div>
@@ -52,30 +52,27 @@
   
 </div>
 
-<.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
-  <%= if @password_changeset.action do %>
+<.form let={f} for={@profile_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_profile">
+  <%= if @profile_changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <div class="basis-1/2 items-center border mt-12 border-violet-400 mx-auto max-w-xl">
-    <h3 class="text-center text-2xl">Personal Information</h3>
+  <div class="basis-1/2 items-center bg-slate-100  my-6 py-6  shadow-lg rounded mx-auto max-w-xl">
+    <h3 class="text-center text-2xl pt-4">Personal Information</h3>
   <%= hidden_input f, :action, name: "action", value: "update_profile" %>
 
   
-  <%= password_input f, :password_confirmation, required: true, name: "password_confirmation", id: "password_confirmation" , placeholder: "Password Confirmation" , class: "block mx-auto rounded-md my-4 w-10/12" %>
-  <%= error_tag f, :password_confirmation %>
+  <%= text_input f, :first_name, required: true, name: "first_name", id: "first_name" , placeholder: "First Name" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+  <%= error_tag f, :first_name %>
 
 
-  <%= password_input f, :password_confirmation, required: true, name: "password_confirmation", id: "password_confirmation" , placeholder: "Password Confirmation" , class: "block mx-auto rounded-md my-4 w-10/12" %>
-  <%= error_tag f, :password_confirmation %>
+  <%= text_input f, :last_name, required: true, name: "last_name", id: "last_name" , placeholder: "Last Name" , class: "block mx-auto rounded-md my-4 w-10/12" %>
+  <%= error_tag f, :last_name %>
 
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" , placeholder: " Current Password" , class: "block mx-auto rounded-md my-4 w-10/12" %>
-    <p class="text-center mx-0"><%= error_tag f, :password %></p>
-    <%= submit "Change password",  class: "block bg-blue-400 mx-auto w-40 h-10 mb-12 rounded-md hover:bg-teal-500" %>
-  </div>
-  <div>
-    
+  <%= date_input f, :date_of_birth, name: "date_of_birth", id: "date_of_birth",  class: "block mx-auto rounded-md my-4 w-10/12" %>
+
+  <%= submit "Edit Profile",  class: "block bg-blue-400 mx-auto w-40 h-10 mb-12 rounded-md hover:bg-teal-500" %>
   </div>
 </.form>

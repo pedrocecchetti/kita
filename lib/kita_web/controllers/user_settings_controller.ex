@@ -4,7 +4,7 @@ defmodule KitaWeb.UserSettingsController do
   alias Kita.Accounts
   alias KitaWeb.UserAuth
 
-  plug :assign_email_and_password_changesets
+  plug :assign_email_profile_and_password_changesets
 
   def edit(conn, _params) do
     render(conn, "edit.html")
@@ -50,6 +50,23 @@ defmodule KitaWeb.UserSettingsController do
     end
   end
 
+  def update(conn, %{"action" => "update_profile"} = params) do
+    user = conn.assigns.current_user
+
+    case Accounts.update_user_profile(user, params) do
+      {:ok, profile} ->
+        user = Accounts.get_user_by_profile_id(profile.id)
+
+        conn
+        |> put_flash(:info, "Profile updated successfully.")
+        |> put_session(:user_return_to, Routes.user_settings_path(conn, :edit))
+        |> UserAuth.log_in_user(user)
+
+      {:error, changeset} ->
+        render(conn, "edit.html", profile_changeset: changeset)
+    end
+  end
+
   def confirm_email(conn, %{"token" => token}) do
     case Accounts.update_user_email(conn.assigns.current_user, token) do
       :ok ->
@@ -64,11 +81,13 @@ defmodule KitaWeb.UserSettingsController do
     end
   end
 
-  defp assign_email_and_password_changesets(conn, _opts) do
+  defp assign_email_profile_and_password_changesets(conn, _opts) do
     user = conn.assigns.current_user
+    profile = Accounts.get_profile_by_id(user.profile_id)
 
     conn
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
+    |> assign(:profile_changeset, Accounts.change_user_profile(profile))
   end
 end

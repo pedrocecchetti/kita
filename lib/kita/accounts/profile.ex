@@ -8,7 +8,6 @@ defmodule Kita.Accounts.Profile do
     field :kita_name, :string
     field :last_name, :string
     field :profile_type, Ecto.Enum, values: [:kita, :person]
-    field :user_id, :id
 
     timestamps()
   end
@@ -19,5 +18,11 @@ defmodule Kita.Accounts.Profile do
     |> cast(attrs, [:first_name, :last_name, :date_of_birth, :kita_name, :profile_type])
     |> validate_required([:first_name, :last_name, :profile_type])
     |> unique_constraint(:kita_name)
+  end
+
+  def update_names_changeset(profile, attrs) do
+    profile
+    |> cast(attrs, [:first_name, :last_name, :date_of_birth])
+    |> validate_required([:first_name, :last_name])
   end
 end
