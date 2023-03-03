@@ -31,3 +31,7 @@ config :logger, level: :warn
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :junit_formatter,
+    print_report_file: true,
+    use_project_subdirectory?: true
