@@ -5,7 +5,7 @@ defmodule KitaWeb.UserRegistrationController do
   alias Kita.Accounts.User
   alias KitaWeb.UserAuth
 
-  @profile_options [{:Kita, :kita}, {:Person,:person}]
+  @profile_options [{:Kita, :kita}, {:Person, :person}]
 
   def new(conn, _params) do
     changeset = Accounts.change_user_registration(%User{})

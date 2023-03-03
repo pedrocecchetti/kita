@@ -12,6 +12,7 @@ defmodule Kita.Accounts.Profile do
     timestamps()
   end
 
+  def profile_type_options(), do: [:kita, :person]
   @doc false
   def changeset(profile, attrs) do
     profile

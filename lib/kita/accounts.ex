@@ -362,8 +362,8 @@ defmodule Kita.Accounts do
 
   def update_user_profile(user, params) do
     complete_user = Repo.preload(user, :profile)
-    complete_user.profile
 
+    complete_user.profile
     |> Profile.update_names_changeset(params)
     |> Repo.update()
   end
