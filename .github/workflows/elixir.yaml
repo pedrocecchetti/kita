@@ -1,0 +1,44 @@
+name: CI (compile and test)
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  build-n-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:13
+        ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Code
+        uses: action/checkout@v3
+
+      - name: Install Erland and Elixir
+        uses: actions/setup-elixir
+        with:
+          elixir-version: 1.14.0
+          otp-version: 13.14.1
+      
+      - name: Get Dependencies
+        run: mix deps.get
+
+      - name: Compile
+        run: mix deps.compile
+
+      - name: test
+        run: mix test
