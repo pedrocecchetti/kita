@@ -10,6 +10,11 @@ defmodule Kita.AccountsFixtures do
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
       email: unique_user_email(),
+      profile: %{
+        first_name: "Show",
+        last_name: "de Buela",
+        profile_type: valid_profile_type()
+      },
       password: valid_user_password()
     })
   end
@@ -20,9 +25,11 @@ defmodule Kita.AccountsFixtures do
     Enum.into(attrs, %{
       email: unique_user_email(),
       password: valid_user_password(),
-      first_name: "aiosjoi",
-      last_name: "ajsoioas",
-      profile_type: valid_profile_type()
+      profile: %{
+        first_name: "Show",
+        last_name: "de Buela",
+        profile_type: valid_profile_type()
+      }
     })
   end
 

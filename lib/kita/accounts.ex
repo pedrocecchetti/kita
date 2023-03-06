@@ -367,4 +367,8 @@ defmodule Kita.Accounts do
     |> Profile.update_names_changeset(params)
     |> Repo.update()
   end
+
+  def preload_profile(user) do
+    Repo.preload(user, :profile)
+  end
 end
