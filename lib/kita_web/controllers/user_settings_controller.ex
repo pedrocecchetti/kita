@@ -83,11 +83,11 @@ defmodule KitaWeb.UserSettingsController do
 
   defp assign_email_profile_and_password_changesets(conn, _opts) do
     user = conn.assigns.current_user
-    profile = Accounts.get_profile_by_id(user.profile_id)
+      |> Accounts.preload_profile()
 
     conn
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
-    |> assign(:profile_changeset, Accounts.change_user_profile(profile))
+    |> assign(:profile_changeset, Accounts.change_user_profile(user.profile))
   end
 end
