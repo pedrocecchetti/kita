@@ -6,7 +6,6 @@ defmodule Kita.Repo.Migrations.CreateProfiles do
       add :first_name, :string
       add :last_name, :string
       add :date_of_birth, :date
-      add :kita_name, :string
       add :profile_type, :string
 
       timestamps()
