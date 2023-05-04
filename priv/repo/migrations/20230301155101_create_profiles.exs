@@ -12,10 +12,10 @@ defmodule Kita.Repo.Migrations.CreateProfiles do
     end
 
     alter table(:users) do
-      add :profile_id, :id
+      add :profile_id, references(:profiles, on_delete: :nilify_all)
     end
 
-    create unique_index(:profiles, [:kita_name])
     create unique_index(:users, [:profile_id])
+
   end
 end
