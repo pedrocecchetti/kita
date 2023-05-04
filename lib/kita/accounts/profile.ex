@@ -5,7 +5,6 @@ defmodule Kita.Accounts.Profile do
   schema "profiles" do
     field :date_of_birth, :date
     field :first_name, :string
-    field :kita_name, :string
     field :last_name, :string
     field :profile_type, Ecto.Enum, values: [:kita, :person]
 
@@ -16,7 +15,7 @@ defmodule Kita.Accounts.Profile do
   @doc false
   def changeset(profile, attrs) do
     profile
-    |> cast(attrs, [:first_name, :last_name, :date_of_birth, :kita_name, :profile_type])
+    |> cast(attrs, [:first_name, :last_name, :date_of_birth, :profile_type])
     |> validate_required([:first_name, :last_name, :profile_type])
     |> unique_constraint(:kita_name)
   end
