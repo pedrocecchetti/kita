@@ -2,12 +2,15 @@ defmodule Kita.Accounts.Profile do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Kita.Accounts.User
+
   schema "profiles" do
-    field :date_of_birth, :date
     field :first_name, :string
     field :last_name, :string
+    field :date_of_birth, :date
     field :profile_type, Ecto.Enum, values: [:kita, :person]
 
+    belongs_to :user, User
     timestamps()
   end
 

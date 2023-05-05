@@ -8,14 +8,12 @@ defmodule Kita.Repo.Migrations.CreateProfiles do
       add :date_of_birth, :date
       add :profile_type, :string
 
+      add :user_id, references(:users, on_delete: :nilify_all)
+
       timestamps()
     end
 
-    alter table(:users) do
-      add :profile_id, references(:profiles, on_delete: :nilify_all)
-    end
-
-    create unique_index(:users, [:profile_id])
+    create unique_index(:profiles, [:user_id])
 
   end
 end
