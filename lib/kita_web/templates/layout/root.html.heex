@@ -32,20 +32,20 @@
             <%= if !@current_user do %>
               <%= link "Login" , to: Routes.user_session_path(@conn, :new),
                 class: "text-sm font-medium text-blue-600  hover:underline hover:bg-gray-100 bg-blue-200 px-3 py-1 rounded-md"
+              %>
+            <% else %>
+              <div class="flex">
+                <%= link "Settings" , to: Routes.user_settings_path(@conn, :edit),
+                  class: "mx-auto pr-1 text-stone-200 " %>
+                <%= link "Log out" , to: Routes.user_session_path(@conn, :delete), method: :delete,
+                  class: "my-auto mx-auto text-stone-200 bg-rose-500 rounded-lg hover:underline hover:bg-rose-400 px-auto w-32 h-8 text-center align-middle"
                 %>
-                <% else %>
-                  <div class="flex">
-                    <%= link "Settings" , to: Routes.user_settings_path(@conn, :edit),
-                      class: "mx-auto pr-1 text-stone-200 " %>
-                      <%= link "Log out" , to: Routes.user_session_path(@conn, :delete), method: :delete,
-                        class: "my-auto mx-auto text-stone-200 bg-rose-500 rounded-lg hover:underline hover:bg-rose-400 px-auto w-32 h-8 text-center align-middle"
-                        %>
-                  </div>
-
-                  <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </nav>
+      <%= if !@current_user do %>
       <nav class="bg-gray-700">
         <div class="max-w-screen-xl px-4 py-3 mx-auto md:px-6">
           <div class="flex items-center">
@@ -68,7 +68,7 @@
           </div>
         </div>
       </nav>
-
+      <% end %>
     </section>
   </header>
   <%= @inner_content %>

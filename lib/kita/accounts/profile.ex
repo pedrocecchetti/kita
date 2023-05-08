@@ -20,7 +20,6 @@ defmodule Kita.Accounts.Profile do
     profile
     |> cast(attrs, [:first_name, :last_name, :date_of_birth, :profile_type])
     |> validate_required([:first_name, :last_name, :profile_type])
-    |> unique_constraint(:kita_name)
   end
 
   def update_names_changeset(profile, attrs) do
