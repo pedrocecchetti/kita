@@ -23,6 +23,7 @@ defmodule KitaWeb.Router do
     get "/", PageController, :index
     get "/company", PageController, :company
     get "/team", PageController, :team
+    get "/me", MeController, :index
   end
 
   # Other scopes may use custom stacks.

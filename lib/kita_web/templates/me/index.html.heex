@@ -1,1 +1,11 @@
-<h1>HELLO</h1>
+<div class="flex p-10 m-auto border-rose-900 h-full w-full">
+    <div class="w-full border-2 border-teal-950 rounded-md">
+        <h1 class="text-center text-5xl mt-8">My Kitas</h1>
+        <div class="w-1/3">
+            <h1 class="text-center p-4 text-xl">Recent</h1>
+            <%= for kita <- @kitas do %>
+                <h2><%= kita.name %></h2>
+            <% end %>
+        </div>
+    </div>
+</div>
